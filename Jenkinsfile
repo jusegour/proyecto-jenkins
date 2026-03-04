@@ -1,48 +1,37 @@
 pipeline {
     agent any
 
-    environment {
-        APP_NAME = "my-app"
-    }
-
     stages {
-
         stage('Checkout') {
             steps {
-                echo 'Cloning repository...'
-                checkout scm
+                git url:'https://github.com/jusegour/proyecto-jenkins.git', branch: 'master'  
             }
         }
-
+    
         stage('Build') {
             steps {
-                echo 'Building application...'
+               
+                echo 'Compilando el proyecto...'
+                sh 'echo "Simulación de la compilación exitosa"'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
+
+                echo 'Ejecutando Pruebas automatizadas...'
+                sh 'echo "Simulación de pruebas completadas Exitosamente"'
+
             }
         }
 
         stage('Deploy Simulation') {
             steps {
-                echo 'Simulating deployment...'
+                echo 'Simulación de Despliegue'
+                sh 'echo "Simulación de despliegue Exitoso"'
+
             }
         }
     }
-
-    post {
-        success {
-            echo 'Pipeline executed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed.'
-        }
-        always {
-            echo 'Cleaning workspace...'
-            cleanWs()
-        }
-    }
+    
 }
